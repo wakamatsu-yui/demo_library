@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>書籍管理</title>
+</head>
+<body>
+<h1>書籍情報 管理</h1>
+<div>
+    <h2>リスト</h2>
+    {{#books}}
+    <ul>
+        <form method="post" action="/book/edit/{{id}}">
+            <li>id: {{id}}</li>
+            <li>title: {{title}}</li>
+            <li>author: {{author}}</li>
+            <li>
+                <label for="title{{id}}">title</label>
+                <input type="text" id="title{{id}}" name="title">
+            </li>
+            <li>
+                <label for="author{{id}}">author</label>
+                <input type="text" id="author{{id}}" name="author">
+            </li>
+            <li>
+                <button type="submit">update</button>
+            </li>
+        </form>
+        <li>
+            <form method="post" action="/book/delete/{{id}}">
+                <button type="submit">delete</button>
+            </form>
+        </li>
+    </ul>
+    {{/books}}
+</div>
+<div>
+    <h2>新規登録</h2>
+    <ul>
+        <form method="post" action="/book">
+            <li>
+                <label for="title0">title</label>
+                <input type="text" id="title0" name="title">
+            </li>
+            <li>
+                <label for="author0">author</label>
+                <input type="text" id="author0" name="author">
+            </li>
+            <li>
+                <button type="submit">register</button>
+            </li>
+        </form>
+    </ul>
+</div>
+</body>
+</html>
