@@ -8,10 +8,9 @@
 <h1>書籍情報 管理</h1>
 <div>
     <h2>検索</h2>
-    <p>キーワードで絞り込み検索ができます</p>
     <form method="get" action="/book">
         <div>
-            <label for="keyword">keyword</label>
+            <label for="keyword">キーワード</label>
             <input type="text" id="keyword" placeholder="タイトルまたは著者" name="keyword">
             <button type="submit">検索</button>
         </div>
@@ -24,27 +23,26 @@
         <li>
             #{{id}}: 『{{title}}』{{author}} 著
             <ul>
-                <li>
-                    <button type="button">edit</button>
+                <li>編集フォーム
                     <form method="post" action="/book/edit/{{id}}">
                         <ul>
                             <li>
-                                <label for="title{{id}}">title</label>
+                                <label for="title{{id}}">タイトル</label>
                                 <input type="text" id="title{{id}}" value="{{title}}" name="title">
                             </li>
                             <li>
-                                <label for="author{{id}}">author</label>
+                                <label for="author{{id}}">著者</label>
                                 <input type="text" id="author{{id}}" value="{{author}}" name="author">
                             </li>
                             <li>
-                                <button type="submit">update</button>
+                                <button type="submit">更新</button>
                             </li>
                         </ul>
                     </form>
                 </li>
                 <li>
                     <form method="post" action="/book/delete/{{id}}">
-                        <button type="submit">delete</button>
+                        <button type="submit">削除</button>
                     </form>
                 </li>
             </ul>
@@ -57,17 +55,15 @@
     <form method="post" action="/book">
         <ul>
             <li>
-                <label for="title0">title</label>
+                <label for="title0">タイトル</label>
                 <input type="text" id="title0" name="title" placeholder="昆虫のすべて">
             </li>
             <li>
-                <label for="author0">author</label>
+                <label for="author0">著者</label>
                 <input type="text" id="author0" name="author" placeholder="山田太郎">
             </li>
-            <li>
-                <button type="submit">register</button>
-            </li>
         </ul>
+        <button type="submit">追加</button>
     </form>
 </div>
 </body>
