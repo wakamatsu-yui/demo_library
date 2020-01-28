@@ -5,6 +5,8 @@ import com.example.demo_library.jpa.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -36,8 +38,17 @@ public class ApiIndexController {
      * @return
      */
     @GetMapping(path = "/book", produces = "application/json")
-    public Iterable<Book> getBook() {
-        return bookRepository.findAll();
+    public Iterable<Book> getBook(@RequestParam(required = false) String keyword) {
+        if (Objects.isNull(keyword) || keyword.isBlank()) {
+            // 無指定：全件を取得
+            return bookRepository.findAll();
+        }
+        Collection<Book> findResult;
+        findResult = bookRepository.findByTitle(keyword);
+        if (findResult.isEmpty()) {
+            findResult = bookRepository.findByAuthor(keyword);
+        }
+        return findResult;
     }
 
     /**

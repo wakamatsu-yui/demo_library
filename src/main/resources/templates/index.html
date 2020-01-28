@@ -7,37 +7,50 @@
 <body>
 <h1>書籍情報 管理</h1>
 <div>
+    <h2>検索</h2>
+    <p>キーワードで絞り込み検索ができます</p>
+    <form method="get" action="/book">
+        <div>
+            <label for="keyword">keyword</label>
+            <input type="text" id="keyword" placeholder="タイトルまたは著者" name="keyword">
+            <button type="submit">検索</button>
+        </div>
+    </form>
     <h2>リスト</h2>
     {{#books}}
-    <ul>
-        <form method="post" action="/book/edit/{{id}}">
+    <div>
+        <ul>
             <li>id: {{id}}</li>
             <li>title: {{title}}</li>
             <li>author: {{author}}</li>
             <li>
-                <label for="title{{id}}">title</label>
-                <input type="text" id="title{{id}}" name="title">
+                <form method="post" action="/book/delete/{{id}}">
+                    <button type="submit">delete</button>
+                </form>
             </li>
-            <li>
-                <label for="author{{id}}">author</label>
-                <input type="text" id="author{{id}}" name="author">
-            </li>
-            <li>
-                <button type="submit">update</button>
-            </li>
+        </ul>
+        <form method="post" action="/book/edit/{{id}}">
+            <ul>
+                <li>
+                    <label for="title{{id}}">title</label>
+                    <input type="text" id="title{{id}}" value="{{title}}" name="title">
+                </li>
+                <li>
+                    <label for="author{{id}}">author</label>
+                    <input type="text" id="author{{id}}" value="{{author}}" name="author">
+                </li>
+                <li>
+                    <button type="submit">update</button>
+                </li>
+            </ul>
         </form>
-        <li>
-            <form method="post" action="/book/delete/{{id}}">
-                <button type="submit">delete</button>
-            </form>
-        </li>
-    </ul>
+    </div>
     {{/books}}
 </div>
 <div>
     <h2>新規登録</h2>
-    <ul>
-        <form method="post" action="/book">
+    <form method="post" action="/book">
+        <ul>
             <li>
                 <label for="title0">title</label>
                 <input type="text" id="title0" name="title">
@@ -49,8 +62,8 @@
             <li>
                 <button type="submit">register</button>
             </li>
-        </form>
-    </ul>
+        </ul>
+    </form>
 </div>
 </body>
 </html>
