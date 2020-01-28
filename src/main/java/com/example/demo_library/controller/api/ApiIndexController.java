@@ -19,20 +19,6 @@ public class ApiIndexController {
     private BookRepository bookRepository;
 
     /**
-     * デバッグ用　全書籍取得
-     *
-     * @return
-     */
-    @GetMapping("/")
-    public String printBooks() {
-        StringBuilder sb = new StringBuilder();
-        bookRepository.findAll().forEach(
-                book -> sb.append(book.toString()).append("\n")
-        );
-        return sb.toString();
-    }
-
-    /**
      * リスト取得
      *
      * @return
@@ -58,9 +44,9 @@ public class ApiIndexController {
      * @return
      */
     @PostMapping(path = "/book", consumes = "application/json", produces = "application/json")
-    public Long postBook(@RequestBody Book book) {
+    public Book postBook(@RequestBody Book book) {
         Book saved = bookRepository.save(new Book(book.getTitle(), book.getAuthor()));
-        return saved.getId();
+        return saved;
     }
 
     /**
