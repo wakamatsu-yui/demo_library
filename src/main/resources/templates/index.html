@@ -16,36 +16,41 @@
             <button type="submit">検索</button>
         </div>
     </form>
+</div>
+<div>
     <h2>リスト</h2>
-    {{#books}}
-    <div>
-        <ul>
-            <li>id: {{id}}</li>
-            <li>title: {{title}}</li>
-            <li>author: {{author}}</li>
-            <li>
-                <form method="post" action="/book/delete/{{id}}">
-                    <button type="submit">delete</button>
-                </form>
-            </li>
-        </ul>
-        <form method="post" action="/book/edit/{{id}}">
+    <ul>
+        {{#books}}
+        <li>
+            #{{id}}: 『{{title}}』{{author}} 著
             <ul>
                 <li>
-                    <label for="title{{id}}">title</label>
-                    <input type="text" id="title{{id}}" value="{{title}}" name="title">
+                    <button type="button">edit</button>
+                    <form method="post" action="/book/edit/{{id}}">
+                        <ul>
+                            <li>
+                                <label for="title{{id}}">title</label>
+                                <input type="text" id="title{{id}}" value="{{title}}" name="title">
+                            </li>
+                            <li>
+                                <label for="author{{id}}">author</label>
+                                <input type="text" id="author{{id}}" value="{{author}}" name="author">
+                            </li>
+                            <li>
+                                <button type="submit">update</button>
+                            </li>
+                        </ul>
+                    </form>
                 </li>
                 <li>
-                    <label for="author{{id}}">author</label>
-                    <input type="text" id="author{{id}}" value="{{author}}" name="author">
-                </li>
-                <li>
-                    <button type="submit">update</button>
+                    <form method="post" action="/book/delete/{{id}}">
+                        <button type="submit">delete</button>
+                    </form>
                 </li>
             </ul>
-        </form>
-    </div>
-    {{/books}}
+        </li>
+        {{/books}}
+    </ul>
 </div>
 <div>
     <h2>新規登録</h2>
@@ -53,11 +58,11 @@
         <ul>
             <li>
                 <label for="title0">title</label>
-                <input type="text" id="title0" name="title">
+                <input type="text" id="title0" name="title" placeholder="昆虫のすべて">
             </li>
             <li>
                 <label for="author0">author</label>
-                <input type="text" id="author0" name="author">
+                <input type="text" id="author0" name="author" placeholder="山田太郎">
             </li>
             <li>
                 <button type="submit">register</button>
